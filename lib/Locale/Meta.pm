@@ -1,3 +1,7 @@
+package Locale::Meta;
+
+# ABSTRACT: Localization tool based on Locale::Wolowitz.
+
 use strict;
 use warnings;
 use utf8;
