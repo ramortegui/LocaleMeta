@@ -1,0 +1,15 @@
+{
+  "en": {
+      "key": {
+        "trans": "key",
+  "meta": {
+          "locatization": ""
+        }
+     }
+  },
+  "es": {
+    "key": {
+      "trans": "llave"
+    }
+  }
+}

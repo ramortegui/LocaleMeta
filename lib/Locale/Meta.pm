@@ -86,7 +86,7 @@ sub new {
 	my $self = bless {}, $class;
 
 	$self->{json} = JSON->new->relaxed;
-	$self->{json}->utf8
+	$self->{json}->utf8;
 
 	$self->load_path($path)
 		if $path;
@@ -151,7 +151,7 @@ sub load_path {
     #Get the language definitions
     foreach my $lang (keys %$data){
       foreach my $key (keys %{$data->{$lang}}){
-				$self->{locales}->{$key}->{$lang} = $data->{$lang}->{$str}->{trans} || $data->{$lang}->{$str};
+				$self->{locales}->{$key}->{$lang} = $data->{$lang}->{$key}->{trans} || $data->{$lang}->{$key};
       }
     };
 	}
