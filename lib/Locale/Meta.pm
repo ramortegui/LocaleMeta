@@ -8,15 +8,18 @@ use utf8;
 use Carp;
 use JSON::MaybeXS qw/JSON/;
 
-our $VERSION = "0.001";
+our $VERSION = "0.002";
 
-=enconding utf-8
+=head1 NAME
 
-=head1 
+Locale::Meta - Multilanguage support loading json structures based on Locale::Wolowitz.
 
-Locale::Meta - Localization with JSON based on Locale::Wolowitz
+=head1 VERSION
 
-=head1 SYNOTPSIS
+vresion 0.002
+
+=head1 SYNOPSIS
+
   #in ./i18n/file.json
   {
     "en": {
