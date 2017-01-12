@@ -47,7 +47,7 @@ vresion 0.002
 =head1 DESCRIPTION
 
 Locale::Meta has been inspired by Locale::Wolowitz, and the base code, documentation,
-and function has been taken from it.  The main goal of Lecale::Meta is to 
+and function has been taken from it.  The main goal of Locale::Meta is to 
 provide the same functionality as Locale::Wolowitz, but removing the dependency of the 
 file names as part of the definition of the language, to manage a new json data structure 
 for the .json files definitions, and also, add a meta field in order to be 
