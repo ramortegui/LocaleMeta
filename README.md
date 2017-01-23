@@ -82,6 +82,11 @@
     You can call this method and load_structure() as much as you want, the
     data from each call will be merged with existing data.
 
+### load_structure ( $structure)
+    
+    Receives a Hash variable representing the same structure as the synopsis, and
+    load the structure into the locales.
+
 ###  loc( $msg, $lang, [ @args ] )
 
     Returns the string $msg, translated to the requested language (if such a
