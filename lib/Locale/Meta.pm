@@ -166,6 +166,32 @@ sub load_path {
 	return 1;
 }
 
+
+=head2 charge($structure)
+
+  Load #structure into $self->{locales}
+
+=cut
+
+sub charge{
+  my ($self, $structure) = @_;
+  $self->{locales} ||= {};
+  if ( (ref $structure) =~ /HASH/ ){
+    foreach my $lang ( keys %{$structure} ){
+      foreach my $key ( keys %{$structure->{$lang}} ){
+        $self->{locales}->{$key} ||= {};
+
+        $self->{locales}->{$key}->{$lang} ||= {};
+        $self->{locales}->{$key}->{$lang} = $structure->{$lang}->{$key}->{trans} if $structure->{$lang}->{$key}->{trans};
+      }
+    }
+  }
+  else{
+    croak "Structure received by charge method isn't a Hash";
+  }
+  return;
+}
+
 =head2 loc( $msg, $lang, [ @args ] )
 
 Returns the string C<$msg>, translated to the requested language (if such
