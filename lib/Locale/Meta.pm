@@ -8,7 +8,7 @@ use utf8;
 use Carp;
 use JSON::MaybeXS qw/JSON/;
 
-our $VERSION = "0.002";
+our $VERSION = "0.004";
 
 =head1 NAME
 
