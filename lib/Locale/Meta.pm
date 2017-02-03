@@ -8,7 +8,7 @@ use utf8;
 use Carp;
 use JSON::MaybeXS qw/JSON/;
 
-our $VERSION = "0.004";
+our $VERSION = "0.005";
 
 =head1 NAME
 
@@ -16,7 +16,7 @@ Locale::Meta - Multilanguage support loading json structures based on Locale::Wo
 
 =head1 VERSION
 
-vresion 0.002
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -26,7 +26,7 @@ vresion 0.002
       "color": {
         "trans" : "color"
         "meta": {
-          "searchable": true,
+          "searchable": 1,
         }
       }
     },
@@ -158,7 +158,8 @@ sub load_path {
     #Get the language definitions
     foreach my $lang (keys %$data){
       foreach my $key (keys %{$data->{$lang}}){
-				$self->{locales}->{$key}->{$lang} = $data->{$lang}->{$key}->{trans} || $data->{$lang}->{$key};
+				$self->{locales}->{$key}->{$lang}->{trans} = $data->{$lang}->{$key}->{trans} || $data->{$lang}->{$key};
+				$self->{locales}->{$key}->{$lang}->{meta} = $data->{$lang}->{$key}->{meta} || {};
       }
     };
 	}
@@ -182,7 +183,8 @@ sub charge{
         $self->{locales}->{$key} ||= {};
 
         $self->{locales}->{$key}->{$lang} ||= {};
-        $self->{locales}->{$key}->{$lang} = $structure->{$lang}->{$key}->{trans} if $structure->{$lang}->{$key}->{trans};
+        $self->{locales}->{$key}->{$lang}->{trans} = $structure->{$lang}->{$key}->{trans} || $structure->{$lang}->{$key};
+        $self->{locales}->{$key}->{$lang}->{meta} = $structure->{$lang}->{$key}->{meta} || {};
       }
     }
   }
@@ -207,7 +209,7 @@ sub loc {
 	return unless defined $msg; # undef strings are passed back as-is
 	return $msg unless $lang;
 
-	my $ret = $self->{locales}->{$msg} && $self->{locales}->{$msg}->{$lang} ? $self->{locales}->{$msg}->{$lang} : $msg;
+	my $ret = $self->{locales}->{$msg} && $self->{locales}->{$msg}->{$lang} ? $self->{locales}->{$msg}->{$lang}->{trans} ? $self->{locales}->{$msg}->{$lang}->{trans}: $msg : $msg;
 
 	if (scalar @args) {
 		for (my $i = 1; $i <= scalar @args; $i++) {

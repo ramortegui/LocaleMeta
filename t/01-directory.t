@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 
-use Test::More tests => 5;
+use Test::More tests => 6;
 use Locale::Meta;
 
 my $lm = Locale::Meta->new('t/i18n');
@@ -17,5 +17,9 @@ is($lm->loc('key', 'es'), 'llave', 'en -> es scope2');
 is($lm->loc('keyes', 'en'), 'keyes', 'key not defined');
 
 is($lm->loc(undef, 'en'), undef, 'undef string returns undef');
+use Data::Dumper;
+print Dumper ( $lm->{locales} );
+
+is($lm->{locales}->{key}->{en}->{meta}->{localization},"/home"," meta attributes loaded successfully.");
 
 done_testing();

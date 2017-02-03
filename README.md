@@ -4,7 +4,7 @@
     Locale::Wolowitz.
 
 # VERSION
-    vresion 0.002
+    version 0.005
 
 # SYNOPSIS
       #in ./i18n/file.json
@@ -13,7 +13,7 @@
           "color": {
             "trans" : "color"
             "meta": {
-              "searchable": true,
+              "searchable": 1,
             }
           }
         },
@@ -29,7 +29,7 @@
 
       my $lm = Locale::Meta->new('./i18n');
  
-            print $lm->loc('color', 'en_gb'); # prints 'colour'
+      print $lm->loc('color', 'en_gb'); # prints 'colour'
 
 # DESCRIPTION
 
