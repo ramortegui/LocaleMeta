@@ -8,7 +8,7 @@ use utf8;
 use Carp;
 use JSON::MaybeXS qw/JSON/;
 
-our $VERSION = "0.005";
+our $VERSION = "0.006";
 
 =head1 NAME
 
@@ -16,7 +16,7 @@ Locale::Meta - Multilanguage support loading json structures based on Locale::Wo
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 

@@ -4,4 +4,6 @@ Revision history for Locale::Meta
         Fix pod file.
 0.005 2017-02-03
         Load meta definitions
+0.006 2017-02-03
+        Add prerequisites
 
