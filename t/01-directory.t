@@ -17,8 +17,6 @@ is($lm->loc('key', 'es'), 'llave', 'en -> es scope2');
 is($lm->loc('keyes', 'en'), 'keyes', 'key not defined');
 
 is($lm->loc(undef, 'en'), undef, 'undef string returns undef');
-use Data::Dumper;
-print Dumper ( $lm->{locales} );
 
 is($lm->{locales}->{key}->{meta}->{localization},"/home"," meta attributes loaded successfully.");
 
