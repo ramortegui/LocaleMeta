@@ -186,9 +186,11 @@ sub charge{
       foreach my $key ( keys %{$structure->{$lang}} ){
         $self->{locales}->{$key} ||= {};
         $self->{locales}->{$key}->{$lang} = $structure->{$lang}->{$key}->{trans} || $structure->{$lang}->{$key};
-        $self->{locales}->{$key}->{meta} ||={};
-        foreach my $meta_key ( keys %{$structure->{$lang}->{$key}->{meta}} ) {
-          $self->{locales}->{$key}->{meta}->{$meta_key} = $structure->{$lang}->{$key}->{meta}->{$meta_key};
+        if($structure->{$lang}->{$key}->{meta}){
+          $self->{locales}->{$key}->{meta} ||= {};
+          foreach my $meta_key ( keys %{$structure->{$lang}->{$key}->{meta}} ) {
+            $self->{locales}->{$key}->{meta}->{$meta_key} = $structure->{$lang}->{$key}->{meta}->{$meta_key};
+          }
         }
       }
     }
