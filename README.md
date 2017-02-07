@@ -4,7 +4,7 @@
     Locale::Wolowitz.
 
 # VERSION
-    version 0.007
+    version 0.008
 
 # SYNOPSIS
       #in ./i18n/file.json

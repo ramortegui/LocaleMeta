@@ -8,7 +8,7 @@ use utf8;
 use Carp;
 use JSON::MaybeXS qw/JSON/;
 
-our $VERSION = "0.007";
+our $VERSION = "0.008";
 
 =head1 NAME
 
@@ -16,7 +16,7 @@ Locale::Meta - Multilanguage support loading json structures based on Locale::Wo
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 
@@ -158,8 +158,12 @@ sub load_path {
     #Get the language definitions
     foreach my $lang (keys %$data){
       foreach my $key (keys %{$data->{$lang}}){
+        $self->{locales}->{$key} ||= {};
 				$self->{locales}->{$key}->{$lang} = $data->{$lang}->{$key}->{trans} || $data->{$lang}->{$key};
-				$self->{locales}->{$key}->{meta} = $data->{$lang}->{$key}->{meta} || {};
+        $self->{locales}->{$key}->{meta} ||={};
+        foreach my $meta_key ( keys %{$data->{$lang}->{$key}->{meta}} ) {
+          $self->{locales}->{$key}->{meta}->{$meta_key} = $data->{$lang}->{$key}->{meta}->{$meta_key};
+        }
       }
     };
 	}
@@ -181,10 +185,11 @@ sub charge{
     foreach my $lang ( keys %{$structure} ){
       foreach my $key ( keys %{$structure->{$lang}} ){
         $self->{locales}->{$key} ||= {};
-
-        $self->{locales}->{$key} ||= {};
         $self->{locales}->{$key}->{$lang} = $structure->{$lang}->{$key}->{trans} || $structure->{$lang}->{$key};
-        $self->{locales}->{$key}->{meta} = $structure->{$lang}->{$key}->{meta} || {};
+        $self->{locales}->{$key}->{meta} ||={};
+        foreach my $meta_key ( keys %{$structure->{$lang}->{$key}->{meta}} ) {
+          $structure->{$lang}->{$key}->{meta}->{$meta_key} = $structure->{$lang}->{$key}->{meta}->{$meta_key};
+        }
       }
     }
   }
