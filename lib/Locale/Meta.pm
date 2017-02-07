@@ -188,7 +188,7 @@ sub charge{
         $self->{locales}->{$key}->{$lang} = $structure->{$lang}->{$key}->{trans} || $structure->{$lang}->{$key};
         $self->{locales}->{$key}->{meta} ||={};
         foreach my $meta_key ( keys %{$structure->{$lang}->{$key}->{meta}} ) {
-          $structure->{$lang}->{$key}->{meta}->{$meta_key} = $structure->{$lang}->{$key}->{meta}->{$meta_key};
+          $self->{locales}->{$key}->{meta}->{$meta_key} = $structure->{$lang}->{$key}->{meta}->{$meta_key};
         }
       }
     }
