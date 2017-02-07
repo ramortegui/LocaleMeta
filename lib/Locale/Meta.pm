@@ -199,9 +199,9 @@ sub charge{
   return;
 }
 
-=head2 loc( $msg, $lang, [ @args ] )
+=head2 loc( $key, $lang, [ @args ] )
 
-Returns the string C<$msg>, translated to the requested language (if such
+Returns the string C<$key>, translated to the requested language (if such
 a translation exists, otherwise no traslation occurs). Any other parameters
 passed to the method (C<@args>) are injected to the placeholders in the string
 (if present).
