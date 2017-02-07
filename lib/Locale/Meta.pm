@@ -158,8 +158,8 @@ sub load_path {
     #Get the language definitions
     foreach my $lang (keys %$data){
       foreach my $key (keys %{$data->{$lang}}){
-				$self->{locales}->{$key}->{$lang}->{trans} = $data->{$lang}->{$key}->{trans} || $data->{$lang}->{$key};
-				$self->{locales}->{$key}->{$lang}->{meta} = $data->{$lang}->{$key}->{meta} || {};
+				$self->{locales}->{$key}->{$lang} = $data->{$lang}->{$key}->{trans} || $data->{$lang}->{$key};
+				$self->{locales}->{$key}->{meta} = $data->{$lang}->{$key}->{meta} || {};
       }
     };
 	}
@@ -182,9 +182,9 @@ sub charge{
       foreach my $key ( keys %{$structure->{$lang}} ){
         $self->{locales}->{$key} ||= {};
 
-        $self->{locales}->{$key}->{$lang} ||= {};
-        $self->{locales}->{$key}->{$lang}->{trans} = $structure->{$lang}->{$key}->{trans} || $structure->{$lang}->{$key};
-        $self->{locales}->{$key}->{$lang}->{meta} = $structure->{$lang}->{$key}->{meta} || {};
+        $self->{locales}->{$key} ||= {};
+        $self->{locales}->{$key}->{$lang} = $structure->{$lang}->{$key}->{trans} || $structure->{$lang}->{$key};
+        $self->{locales}->{$key}->{meta} = $structure->{$lang}->{$key}->{meta} || {};
       }
     }
   }
@@ -204,12 +204,12 @@ passed to the method (C<@args>) are injected to the placeholders in the string
 =cut
 
 sub loc {
-	my ($self, $msg, $lang, @args) = @_;
+	my ($self, $key, $lang, @args) = @_;
 
-	return unless defined $msg; # undef strings are passed back as-is
-	return $msg unless $lang;
+	return unless defined $key; # undef strings are passed back as-is
+	return $key unless $lang;
 
-	my $ret = $self->{locales}->{$msg} && $self->{locales}->{$msg}->{$lang} ? $self->{locales}->{$msg}->{$lang}->{trans} ? $self->{locales}->{$msg}->{$lang}->{trans}: $msg : $msg;
+	my $ret = $self->{locales}->{$key} && $self->{locales}->{$key}->{$lang} ? $self->{locales}->{$key}->{$lang} : $key;
 
 	if (scalar @args) {
 		for (my $i = 1; $i <= scalar @args; $i++) {

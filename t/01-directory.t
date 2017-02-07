@@ -20,6 +20,6 @@ is($lm->loc(undef, 'en'), undef, 'undef string returns undef');
 use Data::Dumper;
 print Dumper ( $lm->{locales} );
 
-is($lm->{locales}->{key}->{en}->{meta}->{localization},"/home"," meta attributes loaded successfully.");
+is($lm->{locales}->{key}->{meta}->{localization},"/home"," meta attributes loaded successfully.");
 
 done_testing();
